@@ -154,6 +154,9 @@
     <Compile Include="Messages\SampleMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeNode.cs" />
+    <Compile Include="Utilities\ApplicationEx.cs" />
+    <Compile Include="Utilities\PathEx.cs" />
+    <Compile Include="Utilities\StringHelper.cs" />
     <Compile Include="XmlSerializerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

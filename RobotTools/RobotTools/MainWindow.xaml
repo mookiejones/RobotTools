@@ -5,25 +5,116 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RobotTools"
-                  xmlns:vm="clr-namespace:RobotTools.ViewModels" 
-                  xmlns:editor="clr-namespace:RobotTools.UI.Editor;assembly=RobotTools.UI" xmlns:views="clr-namespace:RobotTools.Views"
+                  xmlns:vm="clr-namespace:RobotTools.ViewModels"
+                  xmlns:converters="clr-namespace:RobotTools.UI.Editor.Converters;assembly=RobotTools.UI"
+                  xmlns:conv="clr-namespace:RobotTools.Converters"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance Type=vm:MainViewModel,IsDesignTimeCreatable=True}"
-        Title="MainWindow" Height="450" Width="800">
+                  
+                  xmlns:view="clr-namespace:RobotTools.Views" xmlns:docking="clr-namespace:RobotTools.Docking"
+                  Title="MainWindow" Height="450" Width="800">
+    <mah:MetroWindow.Resources>
+        <converters:ActiveDocumentConverter x:Key="ActiveDocumentConverter"/>
+    </mah:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <editor:AvalonEditor
-            ShowLineNumbers="True"
-            />
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="New" Command="{Binding NewCommand}"/>
+                <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
+                <Separator/>
+                <MenuItem Header="Save" Command="{Binding ActiveDocument.SaveCommand}"/>
+                <MenuItem Header="Save As..." Command="{Binding ActiveDocument.SaveAsCommand}"/>
 
-        <GridSplitter Grid.Row="1" Height="10" HorizontalAlignment="Stretch"/>
-        <Expander Grid.Row="2" Header="Messages">
-            <views:MessageView/>
-        </Expander>
+                <MenuItem ItemsSource="{Binding RecentFiles.MruList.ListOfMRUEntries}" Grid.Row="0" Header="Recent Files"
+                          Visibility="{Binding Path=RecentFiles.MruList.ListOfMRUEntries, Mode=OneWay, Converter={conv:ZeroToVisibilityConverter}}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding DisplayPathFileName, Mode=OneWay}" />
+                            <Setter Property="Command" Value="local:AppCommand.LoadFile" />
+                            <Setter Property="CommandParameter" Value="{Binding PathFileName, Mode=OneWay}" />
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Close" Command="{Binding ActiveDocument.CloseCommand}"/>
 
+            </MenuItem>
+            <MenuItem Header="Tools">
+                <MenuItem Header="RecentFiles" IsChecked="{Binding RecentFiles.IsVisible, Mode=TwoWay}" IsCheckable="True"/>
+                <MenuItem Header="Properties" IsChecked="{Binding FileStats.IsVisible, Mode=TwoWay}" IsCheckable="True"/>
+                <MenuItem Header="Show Start Page" Command="local:AppCommand.ShowStartPage"/>
+            </MenuItem>
+            <MenuItem Header="Layout">
+                <MenuItem Header="Load" Command="{Binding LoadLayoutCommand, ElementName=mainWindow}"/>
+                <MenuItem Header="Save" Command="{Binding SaveLayoutCommand, ElementName=mainWindow}"/>
+                <MenuItem Header="Dump to Console" Click="OnDumpToConsole"/>
+            </MenuItem>
+        </Menu>
+        <!--AnchorablesSource="{Binding Tools}" DocumentsSource="{Binding Files}"-->
+        <DockingManager x:Name="dockManager" 
+                                   AnchorablesSource="{Binding Tools}" 
+                                   DocumentsSource="{Binding Files}"
+                                   ActiveContent="{Binding ActiveDocument, Mode=TwoWay, Converter={StaticResource ActiveDocumentConverter}}"
+                                   Grid.Row="1">
+            <!-- DockingManager.Theme>
+                <AeroTheme/>
+            </DockingManager.Theme -->
+            <DockingManager.LayoutItemTemplateSelector>
+                <local:PanesTemplateSelector>
+                    <local:PanesTemplateSelector.FileViewTemplate>
+                        <DataTemplate>
+                            <view:DocumentView />
+                        </DataTemplate>
+                    </local:PanesTemplateSelector.FileViewTemplate>
+                    <local:PanesTemplateSelector.StartPageViewTemplate>
+                        <DataTemplate>
+                            <view:StartPage />
+                        </DataTemplate>
+                    </local:PanesTemplateSelector.StartPageViewTemplate>
+                    <local:PanesTemplateSelector.RecentFilesViewTemplate>
+                        <DataTemplate>
+                            <view:RecentFilesView />
+                        </DataTemplate>
+                    </local:PanesTemplateSelector.RecentFilesViewTemplate>
+                    <local:PanesTemplateSelector.FileStatsViewTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding FileSize}"/>
+                                <TextBlock Text="{Binding LastModified}"/>
+                                <TextBox Text="test"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </local:PanesTemplateSelector.FileStatsViewTemplate>
+                </local:PanesTemplateSelector>
+            </DockingManager.LayoutItemTemplateSelector>
+
+            <DockingManager.LayoutItemContainerStyleSelector>
+                <local:PanesStyleSelector
+                    ToolStyle="{StaticResource LayoutAnchorableItem}"
+                    StartPageStyle="{StaticResource StartPageStyle}"
+                    FileStyle="{StaticResource FileStyle}"
+                    RecentFilesStyle="{StaticResource RecentFileStyle}"
+                    />
+
+
+
+
+            </DockingManager.LayoutItemContainerStyleSelector>
+            <DockingManager.LayoutUpdateStrategy>
+                <docking:LayoutInitializer/>
+            </DockingManager.LayoutUpdateStrategy>
+
+            <LayoutRoot>
+                <LayoutPanel Orientation="Vertical">
+                    <LayoutDocumentPane/>
+                    <LayoutAnchorablePane Name="ToolsPane" DockHeight="150">
+                    </LayoutAnchorablePane>
+                </LayoutPanel>
+            </LayoutRoot>
+        </DockingManager>
     </Grid>
 </mah:MetroWindow>

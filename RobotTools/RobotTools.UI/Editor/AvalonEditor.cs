@@ -15,10 +15,12 @@ using System.Windows.Media;
 using System.Linq;
 using RobotTools.UI.Editor.IconBar;
 using RobotTools.UI.Editor.Completion;
+using ICSharpCode.AvalonEdit.Document;
+using System.IO;
 
 namespace RobotTools.UI.Editor
 {
-    public partial class AvalonEditor : TextEditor, INotifyPropertyChanged
+    public partial class AvalonEditor : TextEditor, INotifyPropertyChanged,IDocument
 
 
     {
@@ -51,6 +53,19 @@ namespace RobotTools.UI.Editor
 
             RegisterEvents();
 
+        }
+
+        event EventHandler<TextChangeEventArgs> IDocument.TextChanged
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
         }
 
         partial void RegisterEvents();
@@ -353,6 +368,9 @@ namespace RobotTools.UI.Editor
         }
 
         public event EventHandler IsModifiedChanged;
+        public event EventHandler<TextChangeEventArgs> TextChanging;
+        public event EventHandler ChangeCompleted;
+        public event EventHandler FileNameChanged;
 
         public void InvokeModifiedChanged(bool isNowModified)
         {
@@ -361,6 +379,83 @@ namespace RobotTools.UI.Editor
                 IsModifiedChanged(this, new EventArgs());
         }
 
+        public IDocumentLine GetLineByNumber(int lineNumber) => Document.GetLineByNumber(lineNumber);
+
+        public IDocumentLine GetLineByOffset(int offset) => Document.GetLineByOffset(offset);
+       
+
+        public int GetOffset(int line, int column) => Document.GetOffset(Line,column);
+
+        public int GetOffset(TextLocation location) => Document.GetOffset(location);
+
+        public TextLocation GetLocation(int offset) => Document.GetLocation(offset);
+
+        public void Insert(int offset, string text) => Document.Insert(offset, text);
+
+        public void Insert(int offset, ITextSource text) => Document.Insert(Offset, text);
+
+        public void Insert(int offset, string text, AnchorMovementType defaultAnchorMovementType) => Document.Insert(offset, text, defaultAnchorMovementType);
+
+        public void Insert(int offset, ITextSource text, AnchorMovementType defaultAnchorMovementType) => Document.Insert(Offset, text, defaultAnchorMovementType);
+
+        public void Remove(int offset, int length) => Document.Remove(offset, length);
+
+        public void Replace(int offset, int length, string newText) => Document.Replace(offset, length, newText);
+
+        public void Replace(int offset, int length, ITextSource newText) => Document.Replace(offset, length, newText);
+
+        public void StartUndoableAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndUndoableAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDisposable OpenUndoGroup()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITextAnchor CreateAnchor(int offset) => Document.CreateAnchor(offset);
+
+        public ITextSource CreateSnapshot() => Document.CreateSnapshot();
+
+        public ITextSource CreateSnapshot(int offset, int length) => Document.CreateSnapshot(offset, length); 
+
+        public TextReader CreateReader() => Document.CreateReader();
+
+        public TextReader CreateReader(int offset, int length) => Document.CreateReader(offset, length); 
+
+        public char GetCharAt(int offset) => Document.GetCharAt(offset); 
+
+        public string GetText(int offset, int length) => Document.GetText(offset, length);
+
+
+        public string GetText(ISegment segment) => Document.GetText(segment);
+
+
+        public void WriteTextTo(TextWriter writer) => Document.WriteTextTo(writer);
+
+
+        public void WriteTextTo(TextWriter writer, int offset, int length) => Document.WriteTextTo(writer, offset, length);
+
+
+        public int IndexOf(char c, int startIndex, int count) => Document.IndexOf(c, startIndex, count);
+
+
+        public int IndexOfAny(char[] anyOf, int startIndex, int count) => Document.IndexOfAny(anyOf, startIndex, count);
+
+
+        public int IndexOf(string searchText, int startIndex, int count, StringComparison comparisonType) => Document.IndexOf(searchText, startIndex, count, comparisonType);
+
+        public int LastIndexOf(char c, int startIndex, int count) => Document.LastIndexOf(c, startIndex, count);
+
+        public int LastIndexOf(string searchText, int startIndex, int count, StringComparison comparisonType)
+            => Document.LastIndexOf(searchText, startIndex, count, comparisonType);
+ 
         [Category(CATEGORY)]
         [Description("Current Line")]
         public int Line=> TextArea.Caret.Column; 
@@ -372,9 +467,13 @@ namespace RobotTools.UI.Editor
 
         [Category(CATEGORY)]
         [Description("Current offset of Caret in editor.")]
-        public int Offset=> TextArea.Caret.Offset; 
-        
-         
+        public int Offset=> TextArea.Caret.Offset;
+
+        public string FileName => throw new NotImplementedException();
+
+        public ITextSourceVersion Version => throw new NotImplementedException();
+
+        public int TextLength => throw new NotImplementedException();
     }
    
 }
