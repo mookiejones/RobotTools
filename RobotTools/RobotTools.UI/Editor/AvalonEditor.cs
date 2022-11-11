@@ -59,6 +59,8 @@ namespace RobotTools.UI.Editor
 
         private TextEditorOptions _options;
 
+        [Category(CATEGORY)]
+        [Description("Text Editor Options")]
         public new TextEditorOptions Options
         {
             get
@@ -140,6 +142,9 @@ namespace RobotTools.UI.Editor
 
 
         private string _fileName;
+
+        [Category("Editor Properties")]
+        [Description("Name of file in editor")]
         public string Filename
         {
             get => _fileName;
@@ -356,13 +361,17 @@ namespace RobotTools.UI.Editor
                 IsModifiedChanged(this, new EventArgs());
         }
 
-
+        [Category(CATEGORY)]
+        [Description("Current Line")]
         public int Line=> TextArea.Caret.Column; 
         
 
-        public int Column=>TextArea.Caret.Column; 
-        
+        [Category(CATEGORY)]
+        [Description("Current Column of Caret")]
+        public int Column=>TextArea.Caret.Column;
 
+        [Category(CATEGORY)]
+        [Description("Current offset of Caret in editor.")]
         public int Offset=> TextArea.Caret.Offset; 
         
          

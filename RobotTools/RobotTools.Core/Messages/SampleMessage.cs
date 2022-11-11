@@ -1,13 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RobotTools.Core.Messages
 {
     public class SampleMessage : IMessageBase
     {
-        public string Title => "Sample Message";
+        public string Title { get; private set; }
+
+
+        public string Message { get; private set; }
+
+        public DateTime Time => DateTime.Now;
+
+        public SampleMessage(string title,string message)
+        {
+            Title = title;
+            Message = message;
+
+        }
+
+        public SampleMessage()
+        {
+
+        }
     }
 }

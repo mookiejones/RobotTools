@@ -1,12 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace RobotTools.UI.Editor
 {
+
     public partial class AvalonEditor
     {
-
+        private const string CATEGORY = "Editor Properties";
 
         #region ToggleFoldsCommand
 
@@ -92,6 +94,8 @@ namespace RobotTools.UI.Editor
         /// <summary>
         ///     Gets the CloseAllFoldsCommand.
         /// </summary>
+        [Category(CATEGORY)]
+        [Description("Close all folds")]
         public ICommand CloseAllFoldsCommand
         {
             get

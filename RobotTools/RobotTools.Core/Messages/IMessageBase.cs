@@ -9,5 +9,11 @@ namespace RobotTools.Core.Messages
     public interface IMessageBase
     {
         string Title { get; }
+
+        string Message { get; }
+
+
+        DateTime Time { get; }
+
     }
 }
