@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+  <xsd:element name="configuration">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="authenticationManagement">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="AuthenticationConfiguration">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="AutoLock" type="xsd:string" />
+                    <xsd:element name="SystemLockMode" type="xsd:string" />
+                    <xsd:element name="MethodList">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element maxOccurs="unbounded" name="AuthenticationMethod">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="AuthenticationType" type="xsd:string" />
+                                <xsd:element minOccurs="0" name="UserListName" type="xsd:string" />
+                                <xsd:element name="LeaseTime" type="xsd:unsignedShort" />
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="DefaultUser">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="Name" type="xsd:string" />
+                          <xsd:element name="UserLevel" type="xsd:unsignedByte" />
+                          <xsd:element name="DisplayName" type="xsd:string" />
+                          <xsd:element name="TranslateDisplayName" type="xsd:boolean" />
+                          <xsd:element name="Password" type="xsd:string" />
+                          <xsd:element name="UsePasswordAutomaticaly" type="xsd:boolean" />
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="AnnouncementTime" type="xsd:unsignedShort" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="secondaryUserList">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="UserList">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" name="UserInfo">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="Name" type="xsd:string" />
+                          <xsd:element name="UserLevel" type="xsd:unsignedByte" />
+                          <xsd:element name="DisplayName" type="xsd:string" />
+                          <xsd:element name="TranslateDisplayName" type="xsd:boolean" />
+                          <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+                          <xsd:element minOccurs="0" name="UsePasswordAutomaticaly" type="xsd:boolean" />
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xs:schema>

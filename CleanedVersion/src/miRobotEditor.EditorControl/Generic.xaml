@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:editorControl="clr-namespace:miRobotEditor.EditorControl"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+    <xctk:ColorToSolidColorBrushConverter x:Key="ColorToSolidBrushConverter"/>
+    <Style TargetType="{x:Type editorControl:Editor}" x:Key="{x:Type editorControl:Editor}" >
+        <Setter Property="Background">
+            <Setter.Value>
+                <Binding Path="BackgroundColor" Converter="{StaticResource ColorToSolidBrushConverter}" Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <Binding Path="BorderColor" Converter="{StaticResource ColorToSolidBrushConverter}" Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ShowLineNumbers">
+            <Setter.Value>
+                <Binding Path="ShowLineNumbers" Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <Binding Path="FontColor" Converter="{StaticResource ColorToSolidBrushConverter}" Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LineNumbersForeground">
+            <Setter.Value>
+                <Binding Path="LineNumbersForeground" Converter="{StaticResource ColorToSolidBrushConverter}" Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness">
+            <Setter.Value>
+                <Binding Path="BorderThickness"  Source="editorControl:EditorOptions.Instance"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Options" Value="{x:Static editorControl:EditorOptions.Instance}"/>
+    </Style>
+
+</ResourceDictionary>

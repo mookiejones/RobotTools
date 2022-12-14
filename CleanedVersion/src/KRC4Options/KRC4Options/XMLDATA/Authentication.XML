@@ -1,0 +1,65 @@
+﻿<configuration>
+  <authenticationManagement>
+    <AuthenticationConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <AutoLock>ModeOP2Aut ModeOP2Ext</AutoLock>
+      <SystemLockMode>None</SystemLockMode>
+      <MethodList>
+        <AuthenticationMethod>
+          <AuthenticationType>SelectionOnly</AuthenticationType>
+          <UserListName>secondaryUserList</UserListName>
+          <LeaseTime>9999</LeaseTime>
+        </AuthenticationMethod>
+        <AuthenticationMethod>
+          <AuthenticationType>UsernameOnly</AuthenticationType>
+          <LeaseTime>9999</LeaseTime>
+        </AuthenticationMethod>
+      </MethodList>
+      <DefaultUser>
+        <Name>AutoKrcOperator</Name>
+        <UserLevel>5</UserLevel>
+        <DisplayName>KrcSecurity#Operator</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+        <Password>kukaAuto2</Password>
+        <UsePasswordAutomaticaly>true</UsePasswordAutomaticaly>
+      </DefaultUser>
+      <AnnouncementTime>300</AnnouncementTime>
+    </AuthenticationConfiguration>
+  </authenticationManagement>
+  <secondaryUserList>
+    <UserList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UserInfo>
+        <Name>AutoKrcProgrammer</Name>
+        <UserLevel>10</UserLevel>
+        <DisplayName>KrcSecurity#Programmer</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+        <Password>kukaAuto2</Password>
+        <UsePasswordAutomaticaly>true</UsePasswordAutomaticaly>
+      </UserInfo>
+      <UserInfo>
+        <Name>KrcExpertProgrammer</Name>
+        <UserLevel>20</UserLevel>
+        <DisplayName>KrcSecurity#ExpertProgrammer</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+      </UserInfo>
+      <UserInfo>
+        <Name>KrcSafetyRecovery</Name>
+        <UserLevel>27</UserLevel>
+        <DisplayName>KrcSecurity#SafetyRecovery</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+      </UserInfo>
+      <UserInfo>
+        <Name>KrcSafetyMaintenance</Name>
+        <UserLevel>29</UserLevel>
+        <DisplayName>KrcSecurity#SafetyMaintenance</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+      </UserInfo>
+      <UserInfo>
+        <Name>KrcAdministrator</Name>
+        <UserLevel>30</UserLevel>
+        <DisplayName>KrcSecurity#KrcAdministrator</DisplayName>
+        <TranslateDisplayName>true</TranslateDisplayName>
+      </UserInfo>
+    </UserList>
+  </secondaryUserList>
+</configuration>

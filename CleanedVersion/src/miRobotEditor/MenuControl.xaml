@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="miRobotEditor.MenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:gui="clr-namespace:miRobotEditor.EditorControl;assembly=miRobotEditor.EditorControl"
+             xmlns:classes="clr-namespace:miRobotEditor.Core.Classes;assembly=miRobotEditor.Core"
+             xmlns:resources="clr-namespace:miRobotEditor.Resources;assembly=miRobotEditor.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <ResourceDictionary />
+    </UserControl.Resources>
+    <Grid DataContext="{Binding Mode=OneWay}">
+        <Menu Background="Transparent" IsMainMenu="True" Margin="10,2,0,0">
+            <Menu.Resources>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Height" Value="16" />
+                    <Setter Property="Width" Value="16" />
+                </Style>
+                <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="10" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Menu.Resources>
+
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Command="{Binding NewFileCommand}" >
+                    <MenuItem.Icon>
+                        <Image Source="/miRobotEditor.Resources;component/Icons/new.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="_Open" Command="{Binding OpenFileCommand}" />
+
+                <MenuItem Header="_Save" Command="{Binding ActiveDocument.TextBox.SaveCommand, Mode=OneWay}" />
+                <MenuItem Header="Save _As" Command="{Binding ActiveDocument.TextBox.SaveAsCommand, Mode=OneWay}" />
+                <Separator />
+                <MenuItem Header="Reload" Command="{Binding ActiveDocument.TextBox.ReloadCommand, Mode=OneWay}" />
+                <Separator />
+                <MenuItem Header="_Import" Command="{Binding ImportCommand}" />
+                <MenuItem Header="Print" Command="ApplicationCommands.Print" />
+                <MenuItem Header="Print P_review" Command="ApplicationCommands.PrintPreview" />
+                <MenuItem Header="_Close" Command="{Binding ActiveDocument.CloseCommand}" />
+                <!--
+                <MenuItem Header="Recent _Files">
+                    <classes:RecentFileList />
+                </MenuItem> -->
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Undo" Command="{Binding ActiveDocument.TextBox.UndoCommand, Mode=OneWay}" />
+                <MenuItem Header="Redo" Command="{Binding ActiveDocument.TextBox.RedoCommand, Mode=OneWay}" />
+                <Separator />
+                <MenuItem Header="Cut" Command="{Binding ActiveDocument.TextBox.CutCommand, Mode=OneWay}" />
+                <MenuItem Header="Copy" Command="{Binding ActiveDocument.TextBox.CopyCommand, Mode=OneWay}" />
+                <MenuItem Header="Paste" Command="{Binding ActiveDocument.TextBox.PasteCommand, Mode=OneWay}" />
+                <MenuItem Header="_Delete" CommandTarget="{Binding ActiveDocument.TextBox}"
+                          Command="ApplicationCommands.Delete" ToolTip="Deletes the current line." />
+                <MenuItem Header="Delete _Line" CommandTarget="{Binding ActiveDocument.TextBox}"
+                          Command="avalonedit:AvalonEditCommands.DeleteLine" ToolTip="Deletes the current line." />
+                <MenuItem Header="Select _All" CommandTarget="{Binding ActiveDocument.TextBox}"
+                          Command="ApplicationCommands.SelectAll" ToolTip="Select All of Document." />
+                <Separator />
+                <MenuItem Header="Comment Selection" CommandTarget="{Binding ActiveDocument.TextBox}" />
+                <Separator />
+                <MenuItem Header="Formatting" x:Name="Formatting">
+                    <MenuItem Header="View Whitespace" IsCheckable="True" IsChecked="{Binding ShowSpaces, Source={x:Static gui:EditorOptions.Instance}}" />
+                    <MenuItem Header="Wordwrap"
+                              IsChecked="{Binding WrapWords, Source={x:Static gui:EditorOptions.Instance}}" />
+                    <Separator />
+                    <MenuItem Header="Toggle Comment" />
+                    <Separator />
+                    <MenuItem Header="Increase Line Indent" />
+                    <MenuItem Header="Decrease Line Indent" />
+                    <MenuItem Header="Remove Leading Whitespace" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.RemoveLeadingWhitespace" />
+                    <MenuItem Header="Remove Trailing Whitespace" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.RemoveTrailingWhitespace" />
+                    <MenuItem Header="To Uppercase" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertToUppercase" />
+                    <MenuItem Header="To Lowercase" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertToLowercase" />
+                    <MenuItem Header="Capitalize" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertToTitleCase" />
+                    <MenuItem Header="Invert Case" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.InvertCase" />
+                    <Separator />
+                    <MenuItem Header="Tabs to Spaces" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertTabsToSpaces" />
+                    <MenuItem Header="Spaces to Tabs" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertSpacesToTabs" />
+                    <MenuItem Header="Leading tabs to spaces" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertLeadingTabsToSpaces" />
+                    <MenuItem Header="Leading spaces to tabs" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.ConvertLeadingSpacesToTabs" />
+                    <MenuItem Header="Indent Selection" CommandTarget="{Binding ActiveDocument.TextBox}"
+                              Command="avalonedit:AvalonEditCommands.IndentSelection" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Find in Files" Command="{Binding ShowFindReplaceCommand}" />
+                <MenuItem Header="Replace in Files" Command="{Binding ShowFindReplaceCommand}" />
+                <Separator />
+                <MenuItem Header="Find and Replace" >
+                    <MenuItem Header="Find" Command="ApplicationCommands.Find"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find Next" Command="avalonedit:SearchCommands.FindNext"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find Previous" Command="avalonedit:SearchCommands.FindPrevious"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Cancel Search" Command="avalonedit:SearchCommands.CloseSearchPanel"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find and Replace" />
+
+                </MenuItem>
+
+                <Separator />
+                <MenuItem Header="Go To..." CommandTarget="{Binding ActiveDocument.TextBox}" />
+                <MenuItem Header="Folding">
+                    <MenuItem Header="_Open All Folds"
+                              Command="{Binding ActiveDocument.TextBox.OpenAllFoldsCommand, Mode=OneWay}" />
+                    <MenuItem Header="_Close All Folds"
+                              Command="{Binding ActiveDocument.TextBox.CloseAllFoldsCommand, Mode=OneWay}" />
+                    <MenuItem Header="Toggle Current Fold" Command="{Binding ActiveDocument.TextBox.ToggleFoldsCommand}" />
+                    <MenuItem Header="Toggle All Folds" Command="{Binding  ActiveDocument.TextBox.ToggleAllFoldsCommand}" />
+
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Appearance">
+                </MenuItem>
+
+                <MenuItem Header="View Whitespace" IsCheckable="true"
+                          IsChecked="{Binding ShowSpaces, BindsDirectlyToSource=True, Source={x:Static gui:EditorOptions.Instance}}" />
+                <MenuItem Header="View EOL" IsCheckable="true"
+                          IsChecked="{Binding ShowEndOfLine, Source={x:Static gui:EditorOptions.Instance}}" />
+                <MenuItem Header="View Tabs" IsCheckable="true"
+                          IsChecked="{Binding ShowTabs, Source={x:Static gui:EditorOptions.Instance}}" />
+                <MenuItem Header="Wordwrap" IsCheckable="true"
+                          IsChecked="{Binding WrapWords, Source={x:Static gui:EditorOptions.Instance}}" />
+                <MenuItem Header="Line Numbers" IsCheckable="true"
+                          IsChecked="{Binding ShowLineNumbers, BindsDirectlyToSource=True, Source={x:Static gui:EditorOptions.Instance}}" />
+            </MenuItem>
+            <MenuItem Header="View _as">
+                <MenuItem Header="ABB" Command="{Binding ChangeViewAsCommand}" CommandParameter="ABB" />
+                <MenuItem Header="KUKA" Command="{Binding ChangeViewAsCommand}" CommandParameter="KUKA" />
+                <MenuItem Header="Fanuc" Command="{Binding ChangeViewAsCommand}" CommandParameter="Fanuc" />
+                <MenuItem Header="Nachi" Command="{Binding ChangeViewAsCommand}" CommandParameter="Nachi" />
+                <MenuItem Header="Kawasaki" Command="{Binding ChangeViewAsCommand}" CommandParameter="Kawasaki" />
+            </MenuItem>
+
+            <MenuItem Header="Tools">
+                <MenuItem Header="Angle Converter" Command="{Binding AddToolCommand}"
+                          CommandParameter="Angle Converter" />
+            </MenuItem>
+            <MenuItem Header="Window">
+                <MenuItem Header="Windows">
+                    <MenuItem Header="Functions" Command="{Binding AddToolCommand}" CommandParameter="Functions" />
+                    <MenuItem Header="Object Browser" Command="{Binding AddToolCommand}"
+                              CommandParameter="Object Browser" />
+                    <MenuItem Header="Explorer" Command="{Binding AddToolCommand}" CommandParameter="Explorer" />
+                    <MenuItem Header="Angle Converter" Command="{Binding AddToolCommand}"
+                              CommandParameter="Angle Converter" />
+                    <MenuItem Header="Notes" Command="{Binding AddToolCommand}" CommandParameter="Notes" />
+                    <MenuItem Header="Output Window" Command="{Binding AddToolCommand}"
+                              CommandParameter="Output Window" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Robot" ItemsSource="{Binding ActiveDocument.FileLanguage}">
+                <MenuItem.ItemTemplateSelector>
+                    <classes:MenuTemplateSelector>
+                        <classes:MenuTemplateSelector.ABBTemplate>
+                            <DataTemplate />
+                        </classes:MenuTemplateSelector.ABBTemplate>
+                    </classes:MenuTemplateSelector>
+                </MenuItem.ItemTemplateSelector>
+                <MenuItem Header="Archive Viewer" Command="{Binding AddToolCommand}" CommandParameter="ArchiveInfo" />
+                <MenuItem Header="Shift Program" Command="{Binding AddToolCommand}" CommandParameter="Shift" />
+                <MenuItem Header="KUKA">
+                    <MenuItem Header="test">
+                        <MenuItem.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding ActiveDocument.FileLanguage.MenuItems}" />
+                        </MenuItem.ItemTemplate>
+                    </MenuItem>
+                    <MenuItem Header="CleanDat" Command="{Binding AddToolCommand}" CommandParameter="CleanDat" />
+                    <MenuItem Header="Rename Positions" Command="{Binding AddToolCommand}" />
+                    <MenuItem Header="ReverseOrder" />
+                    <MenuItem Header="Mirror" />
+                    <MenuItem Header="Adjust Status/Turn" />
+                    <MenuItem Header="Sort DataList" />
+                    <MenuItem Header="View I/O List" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_View Help" />
+                <MenuItem Header="Report a _Bug" />
+                <MenuItem Header="_About" Command="{Binding ShowAboutCommand}" />
+            </MenuItem>
+        </Menu>
+
+    </Grid>
+</UserControl>

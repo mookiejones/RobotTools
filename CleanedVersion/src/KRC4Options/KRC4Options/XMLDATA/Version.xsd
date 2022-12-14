@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="qualified" xml:lang="EN" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Version">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Info" />
+        <xs:element ref="Schema" />
+      </xs:sequence>
+      <xs:attribute name="Label" use="required" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Info">
+    <xs:complexType>
+      <xs:attribute name="Version" use="required" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="VersionType">
+    <xs:restriction base="xs:integer" />
+  </xs:simpleType>
+  <xs:element name="Schema">
+    <xs:complexType>
+      <xs:attribute name="Version" use="required" type="VersionType" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

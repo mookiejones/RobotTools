@@ -1,0 +1,21 @@
+﻿<Window x:Class="miRobotEditor.UI.Dialogs.frmShift"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="frmShift" Height="300" Width="300">
+    <Grid x:Name="Grid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <Controls:ShiftBox  Grid.Column="0" DataContext="{Binding OldValues}"/>
+        <Controls:ShiftBox  Grid.Column="1" DataContext="{Binding NewValues}"/>
+        <Controls:ShiftBox  Grid.Column="2" DataContext="{Binding DiffValues}"/>
+        <Button Grid.Row="1" Grid.Column="1"  Content="_Cancel"  Width="75" Height="20"/>
+        <Button Grid.Row="1" Grid.Column="2"  Content="_OK" Height="20"  Width="75"/>
+    </Grid>
+</Window>

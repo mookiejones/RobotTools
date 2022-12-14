@@ -1,0 +1,78 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    xmlns:converters="clr-namespace:miRobotEditor.Core.Converters;assembly=miRobotEditor.Core"
+>
+
+    <converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+
+    <ControlTemplate x:Key="ValidationTemplate">
+        <DockPanel>
+            <TextBlock Foreground="Red" FontSize="20">
+                <Run Text="!" />
+            </TextBlock>
+            <AdornedElementPlaceholder />
+        </DockPanel>
+    </ControlTemplate>
+
+    <Style x:Key="TextBoxInError" TargetType="{x:Type TextBox}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip"
+                        Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+   
+
+
+    <DataTemplate x:Key="MessageWindowTemplate">
+        <ListView ItemsSource="{Binding Path=Messages}" SelectedItem="{Binding SelectedMessage}" Height="Auto"
+                  Width="Auto">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Clear" Command="{Binding ClearMessagesCommand}" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="16" DisplayMemberBinding="{Binding Icon}" />
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Description}" />
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem }">
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding Icon}" Grid.RowSpan="3" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding SelectedMessage.Title , StringFormat=Title     \{0\}}" />
+                                    <Separator Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
+                                    <Separator />
+                                    <TextBlock Grid.Column="1" Grid.Row="2"
+                                               Text="{Binding SelectedMessage.Description , StringFormat=Description     \{0\}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.Resources>
+        </ListView>
+    </DataTemplate>
+
+
+</ResourceDictionary>

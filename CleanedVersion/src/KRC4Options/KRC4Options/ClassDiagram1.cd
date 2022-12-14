@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Version" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIEAAAAAAAAAAAAAAEAAAAAAAABAIAAEAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Info" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schema" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomerVariant" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Environment" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAQAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigPath">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAIAAAAACEAAAAAAAAAAAEAgABAAAAIAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigList">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAQCACAABAAAAAABAAAAgAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>XMLDATA\ConfigXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F796871F-9032-4D77-94A7-213A4E80DE61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>miRobotEditor.Resources</RootNamespace>
+    <AssemblyName>miRobotEditor.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ButtonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="HeaderResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeaderResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ImageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LabelResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabelResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MessageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ButtonResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ButtonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeaderResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HeaderResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LabelResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LabelResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SyntaxHighlighting\ABBHighlight.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SyntaxHighlighting\FanucHighlight.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SyntaxHighlighting\KAWASAKIHighlight.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SyntaxHighlighting\KFDHighlight.xshd" />
+    <EmbeddedResource Include="SyntaxHighlighting\KUKAHighlight.xshd" />
+    <EmbeddedResource Include="SyntaxHighlighting\NoneHighlight.xshd" />
+    <None Include="SyntaxHighlighting\Reference.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="SyntaxHighlighting\RobotBaseHighlight.xshd" />
+    <EmbeddedResource Include="SyntaxHighlighting\VBAHighlight.xshd" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\vxXYZ_icon.png" />
+    <None Include="Resources\vxvaluetype_icon.png" />
+    <None Include="Resources\vxstruct_icon.png" />
+    <None Include="Resources\vxproperty_icon.png" />
+    <None Include="Resources\vxmodule_icon.png" />
+    <None Include="Resources\vxmethod_icon.png" />
+    <None Include="Resources\vxfield_icon.png" />
+    <None Include="Resources\vxevent_icon.png" />
+    <None Include="Resources\vxenum_icon.png" />
+    <None Include="Resources\togglefolding.png" />
+    <None Include="Resources\stock_notes.png" />
+    <None Include="Resources\srcfile.png" />
+    <None Include="Resources\spsfile.png" />
+    <None Include="Resources\splash.png" />
+    <None Include="Resources\showspaces.png" />
+    <None Include="Resources\select_all.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\save_all.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\refresh_yellow.png" />
+    <None Include="Resources\redo.png" />
+    <None Include="Resources\property-blue.png" />
+    <None Include="Resources\print_preview.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\paste.png" />
+    <None Include="Resources\objectbrowser.png" />
+    <None Include="Resources\newfile.png" />
+    <None Include="Resources\new_edit_find_replace.png" />
+    <None Include="Resources\new.png" />
+    <None Include="Resources\network.png" />
+    <None Include="Resources\lineendings.png" />
+    <None Include="Resources\line_numbers.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\increaseindent.png" />
+    <None Include="Resources\foldingEnabled.png" />
+    <None Include="Resources\foldingDisabled.png" />
+    <None Include="Resources\folder_open.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\expandfolds.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\editor.png" />
+    <None Include="Resources\editdelete.png" />
+    <None Include="Resources\document.png" />
+    <None Include="Resources\decreaseIndent.png" />
+    <None Include="Resources\datfile.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\comment.png" />
+    <None Include="Resources\collapsefolds.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\binoculars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bender.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\binoculars.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BookmarkClear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cd.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collapsefolds.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Comment.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cut.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\decreaseindent.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Desktop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graph_plus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\increaseindent.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line_numbers.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\objectbrowser.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_yellow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stock_notes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\togglefolding.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxenum_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxevent_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxfield_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxmethod_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxmodule_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxproperty_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxstruct_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxvaluetype_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vxXYZ_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\bender.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\binoculars.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\BookmarkClear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\cd.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\close.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\collapsefolds.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Comment.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Copy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Cut.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\decreaseindent.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Desktop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\graph_plus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\increaseindent.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\info.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\line_numbers.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\network.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\new.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\objectbrowser.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\redo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\refresh_yellow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\stock_notes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\togglefolding.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxenum_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxevent_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxfield_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxmethod_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxmodule_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxproperty_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxstruct_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxvaluetype_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\vxXYZ_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\miRobotEditor.Core\miRobotEditor.Core.csproj">
+      <Project>{f091d261-b189-4cff-9c98-82878c0f3f76}</Project>
+      <Name>miRobotEditor.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="Version.xsd" />
+  <xs:element name="CustomerVariant">
+    <xs:complexType>
+      <xs:attribute name="VarName" type="xs:anyURI" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Environment">
+    <xs:complexType>
+      <xs:attribute name="EnvPath" type="xs:anyURI" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfigPath">
+    <xs:complexType>
+      <xs:attribute name="System" type="xs:anyURI" use="required" />
+      <xs:attribute name="User" type="xs:anyURI" use="required" />
+      <xs:attribute name="SysCommon" type="xs:anyURI" use="required" />
+      <xs:attribute name="UserCommon" type="xs:anyURI" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfigList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Version" />
+        <xs:element ref="CustomerVariant" minOccurs="1" />
+        <xs:element ref="Environment" minOccurs="1" />
+        <xs:element ref="ConfigPath" minOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,89 @@
+﻿<avalonedit:TextEditor
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:editorControl="clr-namespace:miRobotEditor.EditorControl"
+             xmlns:classes="clr-namespace:miRobotEditor.EditorControl.Classes"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             x:Class="miRobotEditor.EditorControl.Editor" 	           
+             mc:Ignorable="d" 
+             d:DesignHeight="300"
+             d:DesignWidth="300" 
+             MouseHover="Mouse_OnHover"
+             PreviewMouseWheel="EditorPreviewMouseWheel"
+
+    Options="{x:Static editorControl:EditorOptions.Instance}"
+
+      
+        GotFocus="TextEditorGotFocus" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PreviewKeyDown="TextEditor_PreviewKeyDown" 
+    
+            >   
+    <avalonedit:TextEditor.Resources>
+        <ResourceDictionary>
+            <xctk:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+            <editorControl:EditorOptions x:Key="StaticEditor"/>
+
+            <DataTemplate DataType="{x:Type  classes:CodeCompletion}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Background="Orange" Text="{Binding Text}"/>
+                    <TextBlock Background="Red" Text="{Binding Description}"/>
+                    
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+
+    </avalonedit:TextEditor.Resources>
+    <avalonedit:TextEditor.Background>
+        <Binding Path="BackgroundColor" Converter="{StaticResource ColorToSolidColorBrushConverter}" Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.Background>
+    <avalonedit:TextEditor.BorderBrush>
+        <Binding Path="BorderColor" Converter="{StaticResource ColorToSolidColorBrushConverter}" Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.BorderBrush>
+    <avalonedit:TextEditor.ShowLineNumbers>
+        <Binding Path="ShowLineNumbers"  Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.ShowLineNumbers>
+    <avalonedit:TextEditor.Foreground>
+        <Binding Path="FontColor" Converter="{StaticResource ColorToSolidColorBrushConverter}" Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.Foreground>
+    <avalonedit:TextEditor.LineNumbersForeground>
+        <Binding Path="LineNumbersForeground" Converter="{StaticResource ColorToSolidColorBrushConverter}" Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.LineNumbersForeground>
+    <avalonedit:TextEditor.BorderThickness>
+        <Binding Path="BorderThickness"  Source="{x:Static editorControl:EditorOptions.Instance}"/>
+    </avalonedit:TextEditor.BorderThickness>
+
+    <avalonedit:TextEditor.InputBindings>
+        <KeyBinding Command="{Binding GotoCommand}" Key="G" Modifiers="Control"/>
+        <KeyBinding Command="Find" Key="F" Modifiers="Control"/>
+        <KeyBinding Command="{Binding ReplaceCommand}" Key="R" Modifiers="Control"/>
+        <KeyBinding Key="F5" Command="{Binding ReloadCommand}"/>
+        <KeyBinding Key="D" Command="{Binding AddTimeStampCommand}" Modifiers="Ctrl"/>
+    </avalonedit:TextEditor.InputBindings>
+    <avalonedit:TextEditor.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Cut" Command="{Binding CutCommand}" InputGestureText="Ctrl+X">
+                <MenuItem.Icon>
+                    <Image Source="/miRobotEditor.Resources;component/Resources/Cut.png" />
+                </MenuItem.Icon>
+            </MenuItem>           
+            <MenuItem Header="Copy" Command="{Binding CopyCommand,Mode=OneWay}" InputGestureText="Ctrl+C">
+                <MenuItem.Icon>
+                    <Image Source="/miRobotEditor.Resources;component/Resources/Copy.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Paste" Command="{Binding PasteCommand,Mode=OneWay}" InputGestureText="Ctrl+V">
+                <MenuItem.Icon>
+                    <Image Source="/miRobotEditor.Resources;component/Resources/Paste.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Open all Folds"  Command="{Binding OpenAllFoldsCommand,Mode=OneWay}" InputGestureText="Ctrl+M,O" IsTextSearchCaseSensitive="True"/>
+            <MenuItem Header="Close all Folds" Command="{Binding CloseAllFoldsCommand,Mode=OneWay}" InputGestureText="Ctrl,+,M,L" />
+            <Separator/>
+            <MenuItem Header="Add Timestamp" Command="{Binding AddTimeStampCommand,Mode=OneWay}"  />
+        </ContextMenu>
+    </avalonedit:TextEditor.ContextMenu>
+  
+</avalonedit:TextEditor>

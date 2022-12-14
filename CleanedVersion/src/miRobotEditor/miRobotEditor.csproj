@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A4F46B6-E7E0-48C8-AF94-031B6D2DA20A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>miRobotEditor</RootNamespace>
+    <AssemblyName>miRobotEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ExpressionBlendVersion>12.0.50716.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=4.4.32.18939, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\MvvmLightLibs.4.4.32.1\lib\net40\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=4.4.32.18940, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\MvvmLightLibs.4.4.32.1\lib\net40\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\..\packages\AvalonEdit.5.0.1-pre\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\..\..\packages\MahApps.Metro.0.15.0-ALPHA9\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MvvmLightLibs.4.4.32.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="DocumentView.xaml.cs">
+      <DependentUpon>DocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="KUKADocumentView.xaml.cs">
+      <DependentUpon>KUKADocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LayoutItemSelector.cs" />
+    <Compile Include="MainApplication.cs" />
+    <Compile Include="MenuControl.xaml.cs">
+      <DependentUpon>MenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataItem.cs" />
+    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Model\IDataService.cs" />
+    <Compile Include="PanesStyleSelector.cs" />
+    <Compile Include="ViewModel\temp.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\KukaView.xaml.cs">
+      <DependentUpon>KukaView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\KukaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="Images\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="DocumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KUKADocumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Skins\MainSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ArchiveInfoTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\EditorTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ExplorerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ExtendedGridSplitter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\FormTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\KUKASpecificTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\MenuDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\OptionsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ShiftTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ToolPaneTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\ToolTipTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <Resource Include="Images\Entypo.ttf" />
+    <None Include="Images\Options.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Images\values.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\miRobotEditor.Core\miRobotEditor.Core.csproj">
+      <Project>{f091d261-b189-4cff-9c98-82878c0f3f76}</Project>
+      <Name>miRobotEditor.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.EditorControl\miRobotEditor.EditorControl.csproj">
+      <Project>{4ef98dd5-20c4-48c9-b0f3-94d15100f8e4}</Project>
+      <Name>miRobotEditor.EditorControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.Resources\miRobotEditor.Resources.csproj">
+      <Project>{f796871f-9032-4d77-94a7-213a4e80de61}</Project>
+      <Name>miRobotEditor.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.UI\miRobotEditor.UI.csproj">
+      <Project>{9e0714a3-68fa-4cec-bd9d-f1b3a3532828}</Project>
+      <Name>miRobotEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.ViewModels\miRobotEditor.ViewModels.csproj">
+      <Project>{ADE6D314-C16A-493A-AA54-A02E0DD8C545}</Project>
+      <Name>miRobotEditor.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\binoculars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BookmarkClear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BookmarkNext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BookmarkPrev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\collapsefolds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy %282%29 of editdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy %282%29 of folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy %282%29 of refresh_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy of editdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy of folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy of refresh_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\datfile.png" />
+    <Resource Include="Images\decreaseIndent.png" />
+    <Resource Include="Images\document.png" />
+    <Resource Include="Images\editor.png" />
+    <Resource Include="Images\Entypo-license.txt" />
+    <Resource Include="Images\foldingDisabled.png" />
+    <Resource Include="Images\foldingEnabled.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\lineendings.png" />
+    <Resource Include="Images\network.png" />
+    <Resource Include="Images\newfile.png" />
+    <Resource Include="Images\objectbrowser.png" />
+    <Resource Include="Images\property-blue.png" />
+    <Resource Include="Images\showspaces.png" />
+    <Resource Include="Images\splash.png.jpg" />
+    <Resource Include="Images\spsfile.png" />
+    <Resource Include="Images\srcfile.png" />
+    <Resource Include="Images\stock_notes.png" />
+    <Resource Include="Images\togglefolding.png" />
+    <Resource Include="Images\vxXYZ_icon.png" />
+    <Resource Include="Images\zip.png" />
+    <Resource Include="Images\vxvaluetype_icon.png" />
+    <Resource Include="Images\vxstruct_icon.png" />
+    <Resource Include="Images\vxproperty_icon.png" />
+    <Resource Include="Images\vxmodule_icon.png" />
+    <Resource Include="Images\vxmethod_icon.png" />
+    <Resource Include="Images\vxfield_icon.png" />
+    <Resource Include="Images\vxevent_icon.png" />
+    <Resource Include="Images\vxenum_icon.png" />
+    <Resource Include="Images\VTabGroup.png" />
+    <Resource Include="Images\Undo.png" />
+    <Resource Include="Images\UnComment.png" />
+    <Resource Include="Images\toggle.png" />
+    <Resource Include="Images\text-x-log.png" />
+    <Resource Include="Images\splash.png" />
+    <Resource Include="Images\SelectAll.png" />
+    <Resource Include="Images\select_all.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\SaveAs.png" />
+    <Resource Include="Images\save_all.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\revert.png" />
+    <Resource Include="Images\refresh_yellow.png" />
+    <Resource Include="Images\Redo.png" />
+    <Resource Include="Images\PrintPreview.png" />
+    <Resource Include="Images\print_preview.png" />
+    <Resource Include="Images\Print.png" />
+    <Resource Include="Images\PinRestore_Dark.png" />
+    <Resource Include="Images\PinRestore_Black.png" />
+    <Resource Include="Images\PinRestore.png" />
+    <Resource Include="Images\PinMenu_Dark.png" />
+    <Resource Include="Images\PinMenu_Black.png" />
+    <Resource Include="Images\PinMenu.png" />
+    <Resource Include="Images\PinMaximize_Dark.png" />
+    <Resource Include="Images\PinMaximize_Black.png" />
+    <Resource Include="Images\PinMaximize.png" />
+    <Resource Include="Images\PinDocMenu_Dark.png" />
+    <Resource Include="Images\PinDocMenu_Black.png" />
+    <Resource Include="Images\PinDocMenu.png" />
+    <Resource Include="Images\PinClose_Dark.png" />
+    <Resource Include="Images\PinClose_Black.png" />
+    <Resource Include="Images\PinClose.png" />
+    <Resource Include="Images\PinAutoHide_Dark.png" />
+    <Resource Include="Images\PinAutoHide_Black.png" />
+    <Resource Include="Images\PinAutoHide.png" />
+    <Resource Include="Images\pendrive.png" />
+    <Resource Include="Images\paste.png" />
+    <Resource Include="Images\new_edit_find_replace.png" />
+    <Resource Include="Images\new.png" />
+    <Resource Include="Images\Locked.png" />
+    <Resource Include="Images\lineNumbers.png" />
+    <Resource Include="Images\line_numbers.png" />
+    <Resource Include="Images\increaseindent.png" />
+    <Resource Include="Images\HTabGroup.png" />
+    <Resource Include="Images\graph_plus.png" />
+    <Resource Include="Images\graph_minus.png" />
+    <Resource Include="Images\graph_delete.png" />
+    <Resource Include="Images\graph_color.png" />
+    <Resource Include="Images\graph_add.png" />
+    <Resource Include="Images\folderOpen.png" />
+    <Resource Include="Images\folder_open.png" />
+    <Resource Include="Images\folder.png" />
+    <Resource Include="Images\FindHS.png" />
+    <Resource Include="Images\FIND.bmp" />
+    <Resource Include="Images\fileicon.png" />
+    <Resource Include="Images\expandfolds.png" />
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\error.png" />
+    <Resource Include="Images\editvar.png" />
+    <Resource Include="Images\editor.ico" />
+    <Resource Include="Images\editdeleteall.png" />
+    <Resource Include="Images\editdelete.png" />
+    <Resource Include="Images\drive.png" />
+    <Resource Include="Images\DockPaneLargeEmpty.png" />
+    <Resource Include="Images\DockPaneEmpty.png" />
+    <Resource Include="Images\DockDocumentTop.png" />
+    <Resource Include="Images\DockDocumentRight.png" />
+    <Resource Include="Images\DockDocumentLeft.png" />
+    <Resource Include="Images\DockDocumentInside.png" />
+    <Resource Include="Images\DockDocumentBottom.png" />
+    <Resource Include="Images\DockDocumentAsAnchorableTop.png" />
+    <Resource Include="Images\DockDocumentAsAnchorableRight.png" />
+    <Resource Include="Images\DockDocumentAsAnchorableLeft.png" />
+    <Resource Include="Images\DockDocumentAsAnchorableBottom.png" />
+    <Resource Include="Images\DockAnchorableTop.png" />
+    <Resource Include="Images\DockAnchorableRight.png" />
+    <Resource Include="Images\DockAnchorableLeft.png" />
+    <Resource Include="Images\DockAnchorableBottom.png" />
+    <Resource Include="Images\desktop.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\delete.bmp" />
+    <Resource Include="Images\decreasindent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="spelling.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\add.ico" />
+    <Resource Include="Icons\bender.ico" />
+    <Resource Include="Icons\binoculars.ico" />
+    <Resource Include="Icons\BookmarkClear.ico" />
+    <Resource Include="Icons\cd.ico" />
+    <Resource Include="Icons\close.ico" />
+    <Resource Include="Icons\collapsefolds.ico" />
+    <Resource Include="Icons\Comment.ico" />
+    <Resource Include="Icons\Copy.ico" />
+    <Resource Include="Icons\Cut.ico" />
+    <Resource Include="Icons\decreaseindent.ico" />
+    <Resource Include="Icons\Desktop.ico" />
+    <Resource Include="Icons\graph_plus.ico" />
+    <Resource Include="Icons\increaseindent.ico" />
+    <Resource Include="Icons\info.ico" />
+    <Resource Include="Icons\line_numbers.ico" />
+    <Resource Include="Icons\network.ico" />
+    <Resource Include="Icons\new.ico" />
+    <Resource Include="Icons\objectbrowser.ico" />
+    <Resource Include="Icons\redo.ico" />
+    <Resource Include="Icons\refresh_yellow.ico" />
+    <Resource Include="Icons\stock_notes.ico" />
+    <Resource Include="Icons\togglefolding.ico" />
+    <Resource Include="Icons\vxenum_icon.ico" />
+    <Resource Include="Icons\vxevent_icon.ico" />
+    <Resource Include="Icons\vxfield_icon.ico" />
+    <Resource Include="Icons\vxmethod_icon.ico" />
+    <Resource Include="Icons\vxmodule_icon.ico" />
+    <Resource Include="Icons\vxproperty_icon.ico" />
+    <Resource Include="Icons\vxstruct_icon.ico" />
+    <Resource Include="Icons\vxvaluetype_icon.ico" />
+    <Resource Include="Icons\vxXYZ_icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

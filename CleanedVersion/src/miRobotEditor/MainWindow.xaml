@@ -1,0 +1,304 @@
+﻿<mah:MetroWindow x:Class="miRobotEditor.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
+                 xmlns:ignore="http://www.ignore.com"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:gui="clr-namespace:miRobotEditor.EditorControl;assembly=miRobotEditor.EditorControl"
+                 xmlns:windows="clr-namespace:miRobotEditor.UI.Windows;assembly=miRobotEditor.UI"
+                 xmlns:miRobotEditor="clr-namespace:miRobotEditor"
+                 xmlns:views="clr-namespace:miRobotEditor.Views;assembly=miRobotEditor.UI"
+                 xmlns:converters="clr-namespace:miRobotEditor.ViewModels.Converters;assembly=miRobotEditor.ViewModels"
+                 xmlns:core="clr-namespace:miRobotEditor.Core;assembly=miRobotEditor.Core"
+                 mc:Ignorable="d ignore"
+
+                 SnapsToDevicePixels="True"
+                 WindowState="Maximized"
+                 Closing="WindowClosing"
+                 TitleForeground="Black"
+                 Loaded="WindowLoaded"
+                 AllowDrop="True"
+                 Drop="DropFiles">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+                <ResourceDictionary Source="Templates/ArchiveInfoTemplate.xaml" />
+                <ResourceDictionary Source="Templates/KUKASpecificTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:ActiveEditorConverter x:Key="ActiveEditorConverter" />
+            <gui:EditorOptions x:Key="EditorOptions" />
+            <Style  TargetType="{x:Type ToolTip}">
+                <!-- ReSharper restore Xaml.RedundantResource -->
+                <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Title>
+        <Binding Mode="OneWay" StringFormat="miRobotEditor:\= \{0\}" Source="{StaticResource Locator}" Path="Main.Title"/>
+    </Window.Title>
+    <Window.Background>
+        <Binding Mode="OneWay" Source="{StaticResource WindowBackgroundBrush}"/>
+    </Window.Background>
+    <Window.DataContext>
+        <Binding Mode="OneWay" Path="Main" Source="{StaticResource Locator}"/>
+    </Window.DataContext>
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout Header="I/O" Position="Right" Content="{Binding ActiveDocument.FileLanguage.IOModel}"
+                        IsOpen="{Binding ShowIO}" />
+            <!-- mah:Flyout Header="Options" Position="Right"  Content="{x:Static gui:EditorOptions.Instance}" IsOpen="{Binding ShowSettings}" -->
+
+            <mah:Flyout Header="Options" Position="Right" Content="{StaticResource EditorOptions}"
+                        IsOpen="{Binding ShowSettings}" />
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <ToggleButton Content="Settings" Command="{Binding ShowSettingsCommand}" />
+            <ToggleButton Content="Show IO" Command="{Binding ShowIOCommand}"
+                          Visibility="{Binding EnableIO, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <mah:MetroWindow.GlowBrush>
+        <SolidColorBrush Color="{DynamicResource HighlightLightColor}" />
+    </mah:MetroWindow.GlowBrush>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ActiveDocument.CloseCommand}" Gesture="Alt+C" />
+        <KeyBinding Key="F3" Modifiers="Shift" Command="Search" CommandParameter="something" />
+        <KeyBinding Key="F" Modifiers="Control" Gesture="CTRL+F" Command="Find" />
+        <KeyBinding Key="R" Modifiers="Shift+Control" Command="{Binding ShowFindReplaceCommand}" />
+    </Window.InputBindings>
+    <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource Locator}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <miRobotEditor:MenuControl/>
+        <ToolBarTray x:Name="ToolBar" Grid.Row="1" HorizontalAlignment="Stretch">
+            <ToolBar VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ToolBarTray.IsLocked="True" SnapsToDevicePixels="True" DataContext="{Binding Main}">
+                <ToolBar.Resources>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Height" Value="34" />
+                        <Setter Property="Width" Value="34" />
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="10" Color="Gray" Opacity="0.25" Direction="270" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.30" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                        <Setter Property="Height" Value="34" />
+                        <Setter Property="Width" Value="34" />
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="IsThreeState" Value="False" />
+                        <Setter Property="IsTabStop" Value="False" />
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="10" Color="Black" Opacity="0.25" Direction="270" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="ToolTip" Value="Show Folds" />
+                                <!-- Property="Content" Value="{StaticResource FoldingDisabled}"-->
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="ToolTip" Value="Hide Folds" />
+                                <!-- Setter Property="Content" Value="{StaticResource FoldingEnabled}" -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Height" Value="24" />
+                        <Setter Property="Width" Value="24" />
+                        <Style.Triggers>
+                            <DataTrigger
+                            Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type ButtonBase}}}"
+                            Value="False">
+                                <Setter Property="Opacity" Value="0.30" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToolBar.Resources>                
+                <Button Margin="5" Command="{Binding NewFileCommand}"
+                    CommandParameter="{Binding ElementName=Documents, Mode=OneWay}">
+                    <Image Source="Images/_new.png" />
+                </Button>
+                <Button Command="{Binding OpenFileCommand}">
+                    <Image Source="Images/folder.png" />
+                </Button>
+                <Button Command="{Binding ActiveDocument.TextBox.SaveCommand,Mode=OneWay}">
+                    <Image Source="Images/save.png" />
+                </Button>
+                <Button RenderTransformOrigin="0.5,0.5" Command="{Binding ActiveDocument.TextBox.UndoCommand,Mode=OneWay}">
+                    <Image RenderTransformOrigin="0.5,0.5" Source="Images/Redo.png">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1" />
+                                <SkewTransform />
+                                <RotateTransform CenterX="-1" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Button>
+                <Button Command="{Binding ActiveDocument.TextBox.RedoCommand, Mode=OneWay}">
+                    <Image Source="Images/Redo.png" />
+                </Button>
+                <Button Command="{Binding ActiveDocument.TextBox.CutCommand, Mode=OneWay}">
+                    <Image Source="Images/Cut.png" />
+                </Button>
+                <Button Command="{Binding ActiveDocument.TextBox.CopyCommand, Mode=OneWay}">
+                    <Image Source="Images/Copy.png" />
+
+                </Button>
+                <Button Command="{Binding ActiveDocument.TextBox.PasteCommand, Mode=OneWay}">
+                    <Image Source="Images/Paste.png" />
+                </Button>
+
+                <ToggleButton IsChecked="{Binding EnableFolding, Source={x:Static gui:EditorOptions.Instance}}">
+                    <Image Source="Images/togglefolding.png" />
+                </ToggleButton>
+
+                <Button ToolTip="Expand Folds" Command="{Binding ActiveDocument.TextBox.OpenAllFoldsCommand, Mode=OneWay}">
+                    <Image Source="Images/expandfolds.png" />
+                </Button>
+                <Button ToolTip="Collapse Folds" Command="{Binding ActiveDocument.TextBox.CloseAllFoldsCommand, Mode=OneWay}">
+                    <Image Source="Images/collapsefolds.png" />
+
+                </Button>
+                <Button ToolTip="Decrease Indent" Command="{Binding ActiveDocument.TextBox.ChangeIndentCommand}"
+                    CommandParameter="false">
+                    <Image Source="Images/decreasindent.png" />
+
+
+                </Button>
+                <Button ToolTip="Increase Indent" Command="{Binding ActiveDocument.TextBox.ChangeIndentCommand}"
+                    CommandParameter="true">
+                    <Image Source="Images/increaseindent.png" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+      
+        <ad:DockingManager x:Name="DockManager" Background="Transparent" Grid.Row="2"
+            AnchorablesSource="{Binding Main.Tools}" 
+            DocumentsSource="{Binding Main.Editors}"
+            ActiveContent="{Binding  Main.ActiveDocument, Converter={StaticResource ActiveEditorConverter}, Mode=TwoWay}">
+            <ad:DockingManager.LayoutItemTemplateSelector>
+                <miRobotEditor:LayoutItemSelector DocumentTemplate="{StaticResource DocumentTemplate}" KukaTemplate="{StaticResource KukaTemplate}"/>
+            </ad:DockingManager.LayoutItemTemplateSelector>
+            <ad:DockingManager.Theme>
+                <ad:MetroTheme/>
+            </ad:DockingManager.Theme>
+                <ad:DockingManager.LayoutUpdateStrategy>
+                <core:LayoutInitializer/>
+            </ad:DockingManager.LayoutUpdateStrategy>
+        <ad:DockingManager.LayoutItemContainerStyleSelector>
+                <miRobotEditor:PanesStyleSelector>
+                    <miRobotEditor:PanesStyleSelector.ToolStyle>
+                        <Style TargetType="{x:Type ad:LayoutAnchorableItem}">
+                            <Setter Property="Title" Value="{Binding Model.Title}" />
+                            <Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+                            <Setter Property="Visibility"
+                                    Value="{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}" />
+                            <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+                            <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+                            <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+                        </Style>
+                    </miRobotEditor:PanesStyleSelector.ToolStyle>
+                    <miRobotEditor:PanesStyleSelector.FileStyle>
+                        <Style TargetType="{x:Type ad:LayoutItem}">
+                            <Setter Property="Title" Value="{Binding Model.Title}" />
+                            <Setter Property="ToolTip" Value="{Binding Model.FilePath}" />
+                            <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+                            <Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+                            <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+                        </Style>
+                    </miRobotEditor:PanesStyleSelector.FileStyle>
+                </miRobotEditor:PanesStyleSelector>
+            </ad:DockingManager.LayoutItemContainerStyleSelector>
+            <ad:LayoutRoot>
+                <ad:LayoutPanel Orientation="Vertical">
+                    <ad:LayoutPanel Orientation="Horizontal">
+                        <ad:LayoutAnchorablePaneGroup DockWidth="300">
+                            <ad:LayoutAnchorablePane Name="LeftPane" />
+                        </ad:LayoutAnchorablePaneGroup>
+                        <ad:LayoutDocumentPane x:Name="Documents" />
+                        <ad:LayoutAnchorablePane Name="RightPane" DockWidth="250">
+                            <ad:LayoutAnchorable x:Name="Functions" Title="Functions">
+                                <views:FunctionWindow />
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorablePane>
+                    </ad:LayoutPanel>
+                    <ad:LayoutAnchorablePane Name="BottomPane" DockHeight="250">
+                        <ad:LayoutAnchorable Title="Object Browser">
+                            <windows:ObjectBrowserView DataContext="{Binding Main, Mode=OneWay}" />
+                        </ad:LayoutAnchorable>
+                        <ad:LayoutAnchorable Title="Notes">
+                            <windows:NotesWindow />
+                        </ad:LayoutAnchorable>
+                        <ad:LayoutAnchorable Title="Angle Converter">
+                            <windows:AngleConverterWindow />
+                        </ad:LayoutAnchorable>
+                    </ad:LayoutAnchorablePane>
+                </ad:LayoutPanel>
+            </ad:LayoutRoot>
+        </ad:DockingManager>
+        <StatusBar Grid.Row="3"             DataContext="{Binding Main, Mode=OneWay, NotifyOnSourceUpdated=True}">
+            <StatusBar.Resources>
+                <Style TargetType="{x:Type StatusBarItem}">
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="FontWeight" Value="ExtraLight" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="FontWeight" Value="ExtraLight" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+            </StatusBar.Resources>
+            <StatusBarItem Grid.Column="2" DataContext="{Binding }"
+                           Content="{Binding ActiveDocument.TextBox.Line, StringFormat=Line \{0\}}"
+                           ContentStringFormat="{Binding ActiveDocument.TextBox.Line, StringFormat=Line \{0\}}"
+                           ToolTip="Current Line" />
+            <StatusBarItem Grid.Column="3" DataContext="{Binding }" ToolTip="Column Position"
+                           Content="{Binding ActiveDocument.TextBox.Column, StringFormat=Col \{0\}}"
+                           ContentStringFormat="{Binding ActiveDocument.TextBox.Column, StringFormat=Col \{0\}}" />
+            <StatusBarItem Grid.Column="4"  DataContext="{Binding}" ToolTip="Offset Position of Caret"
+                           Content="{Binding ActiveDocument.TextBox.Offset, StringFormat=Offset \{0\}}"
+                           ContentStringFormat="{Binding ActiveDocument.TextBox.Offset, StringFormat=Offset \{0\}}" />
+            <StatusBarItem Grid.Column="5"  DataContext="{Binding}" ToolTip="Robot Type"
+                           Content="{Binding ActiveDocument.FileLanguage.Name}" />
+            <StatusBarItem DataContext="{Binding}" ToolTip="Last Modified"
+                           Content="{Binding ActiveDocument.TextBox.FileSave}" />
+            <StatusBarItem Grid.Column="7" Content="INS" ToolTip="Insert Mode" IsEnabled="{Binding StatusBar.IsInsPressed, Source={StaticResource Locator}}" DataContext="{Binding Source={StaticResource Locator}}" />
+            <StatusBarItem Grid.Column="8" Content="CAPS" ToolTip="Caps Lock" IsEnabled="{Binding StatusBar.IsCapsPressed, Source={StaticResource Locator}}" DataContext="{Binding Source={StaticResource Locator}}" />
+            <StatusBarItem Grid.Column="9" Content="SCR" ToolTip="Scroll Lock" IsEnabled="{Binding StatusBar.IsScrollPressed, Source={StaticResource Locator}}" DataContext="{Binding Source={StaticResource Locator}}" />
+        </StatusBar>
+    </Grid>
+</mah:MetroWindow>

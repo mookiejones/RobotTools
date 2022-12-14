@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:miRobotEditor.ViewModels;assembly=miRobotEditor.ViewModels"
+                    xmlns:views="clr-namespace:miRobotEditor.UI.Views;assembly=miRobotEditor.UI">
+
+
+    <DataTemplate DataType="{x:Type viewModels:UpdateCheckerModel}">
+        <!--        <mah:MetroWindow Title="{Binding Title, Mode=OneWay}" Height="174" Width="434" ShowInTaskbar="False" Padding="5">-->
+        <views:UpdateCheckerView/>
+    </DataTemplate>
+
+
+</ResourceDictionary>

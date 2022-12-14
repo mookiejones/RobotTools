@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:languages="clr-namespace:miRobotEditor.EditorControl.Languages;assembly=miRobotEditor.EditorControl"
+                    xmlns:viewModels="clr-namespace:miRobotEditor.ViewModels;assembly=miRobotEditor.ViewModels"
+                    xmlns:views="clr-namespace:miRobotEditor.UI.Views;assembly=miRobotEditor.UI">
+    <DataTemplate DataType="{x:Type viewModels:SystemFunctionsModel}">
+        <!--        <mah:MetroWindow Title="System Functions" Height="169" Width="201" ResizeMode="NoResize">-->
+        <views:SystemFunctionsView/>
+    </DataTemplate>
+
+
+    <!-- Dat Cleaner -->
+    <DataTemplate DataType="{x:Type languages:DatCleanHelper}">
+<views:DatCleanHelperView/>
+    </DataTemplate>
+
+
+</ResourceDictionary>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{B06DC144-70C8-47CE-894D-CF0F45567AA9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Setup</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KukaSystems.Properties\Resources.cs" />
+    <Compile Include="KukaSystems\Krc4Button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KukaSystems\Krc4Button.Designer.cs">
+      <DependentUpon>Krc4Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup.My.Resources\Resources.cs" />
+    <Compile Include="Setup.My\MyApplication.cs" />
+    <Compile Include="Setup.My\MyComputer.cs" />
+    <Compile Include="Setup.My\MyProject.cs" />
+    <Compile Include="Setup.My\MySettings.cs" />
+    <Compile Include="Setup.My\MySettingsProperty.cs" />
+    <Compile Include="Setup\Cmd.cs" />
+    <Compile Include="Setup\frmBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\IniFile.cs" />
+    <Compile Include="Setup\Language.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="KukaSystems.Properties\Resources.resources" />
+    <EmbeddedResource Include="KukaSystems\Krc4Button.resx">
+      <DependentUpon>Krc4Button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

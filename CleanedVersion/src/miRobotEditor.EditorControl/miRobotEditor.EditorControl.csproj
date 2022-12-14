@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EF98DD5-20C4-48C9-B0F3-94D15100F8E4}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>miRobotEditor.EditorControl</RootNamespace>
+    <AssemblyName>miRobotEditor.EditorControl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ExpressionBlendVersion>12.0.50716.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\src\bin\Debug\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\..\packages\AvalonEdit.5.0.1-pre\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\src\bin\Debug\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\BookmarkBase.cs" />
+    <Compile Include="Classes\ClassMemberBookmark.cs" />
+    <Compile Include="Classes\IBracketSearcher.cs" />
+    <Compile Include="Classes\IconBarMargin.cs" />
+    <Compile Include="Classes\MyBracketSearcher.cs" />
+    <Compile Include="Classes\StringTextBuffer.cs" />
+    <Compile Include="Classes\TextSourceAdapter.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="EditorControl.xaml.cs">
+      <DependentUpon>EditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditorOptions.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Languages\CodeCompletionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\KUKACompletionItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\LanguageTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Classes\BackgroundRenderer.cs" />
+    <Compile Include="Classes\BracketHighlightRenderer.cs" />
+    <Compile Include="Classes\BracketSearchResult.cs" />
+    <Compile Include="Classes\CodeCompletion.cs" />
+    <Compile Include="Classes\ColorizeAvalonEdit.cs" />
+    <Compile Include="Classes\CompletionContext.cs" />
+    <Compile Include="Classes\DefaultCompletionItem.cs" />
+    <Compile Include="Classes\DefaultCompletionItemList.cs" />
+    <Compile Include="Classes\DefaultFormattingStrategy.cs" />
+    <Page Include="UserControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DocumentModel.cs" />
+    <Compile Include="Editor.xaml.cs">
+      <DependentUpon>Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\CompletionItemListKeyResult.cs" />
+    <Compile Include="GlobalOptions.cs" />
+    <Compile Include="IconBarMargin.cs" />
+    <Compile Include="Interfaces\ICompletionItem.cs" />
+    <Compile Include="Interfaces\ICompletionItemList.cs" />
+    <Compile Include="Interfaces\ICompletionListWindow.cs" />
+    <Compile Include="Interfaces\IDialogProvider.cs" />
+    <Compile Include="Interfaces\IDocument.cs" />
+    <Compile Include="Interfaces\ICompletionWindow.cs" />
+    <Compile Include="Interfaces\IDocumentLine.cs" />
+    <Compile Include="Interfaces\IEditor.cs" />
+    <Compile Include="Interfaces\AbstractFoldingStrategy.cs" />
+    <Compile Include="Interfaces\IFormattingStrategy.cs" />
+    <Compile Include="Interfaces\IInsightItem.cs" />
+    <Compile Include="Interfaces\IInsightWindow.cs" />
+    <Compile Include="Interfaces\ITextAnchor.cs" />
+    <Compile Include="Interfaces\ITextBuffer.cs" />
+    <Compile Include="Interfaces\ITextBufferVersion.cs" />
+    <Compile Include="Interfaces\ITextEditor.cs" />
+    <Compile Include="Interfaces\ITextEditorCaret.cs" />
+    <Compile Include="Interfaces\ITextEditorOptions.cs" />
+    <Compile Include="IOptions.cs" />
+    <Compile Include="IOViewModel.cs" />
+    <Compile Include="Languages\ABB.cs" />
+    <Compile Include="Languages\AbstractLanguageClass.cs" />
+    <Compile Include="Languages\IPosition.cs" />
+    <Compile Include="Languages\AbstractVariableClass.cs" />
+    <Compile Include="Languages\DatCleaner.cs" />
+    <Compile Include="Languages\DatCleanHelper.cs" />
+    <Compile Include="Languages\Fanuc.cs" />
+    <Compile Include="Languages\FileInfo.cs" />
+    <Compile Include="Languages\ICompletionItem.cs" />
+    <Compile Include="Languages\IRobot.cs" />
+    <Compile Include="Languages\ISnippetCompletionItem.cs" />
+    <Compile Include="Languages\Kawasaki.cs" />
+    <Compile Include="Languages\KUKA.cs" />
+    <Compile Include="Languages\KukaViewModel.cs" />
+    <Compile Include="Languages\LanguageBase.cs" />
+    <Compile Include="Languages\LanguageFold.cs" />
+    <Compile Include="Languages\PositionBase.cs" />
+    <Compile Include="Languages\PositionValue.cs" />
+    <Compile Include="Languages\ShiftClass.cs" />
+    <Compile Include="Languages\SnippetCollection.cs" />
+    <Compile Include="Languages\Typlanguage.cs" />
+    <Compile Include="Languages\VariableItem.cs" />
+    <Compile Include="Languages\VBA.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Languages\CompletionItemsSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Languages\SyntaxHighlighting\ABBHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\SyntaxHighlighting\FanucHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\SyntaxHighlighting\KAWASAKIHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\SyntaxHighlighting\KFDHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\SyntaxHighlighting\KUKAHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\SyntaxHighlighting\NoneHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Languages\SyntaxHighlighting\Reference.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Languages\SyntaxHighlighting\RobotBaseHighlight.xshd" />
+    <EmbeddedResource Include="Languages\SyntaxHighlighting\VBAHighlight.xshd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Languages\CompletionItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\miRobotEditor.Core\miRobotEditor.Core.csproj">
+      <Project>{f091d261-b189-4cff-9c98-82878c0f3f76}</Project>
+      <Name>miRobotEditor.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.Resources\miRobotEditor.Resources.csproj">
+      <Project>{f796871f-9032-4d77-94a7-213a4e80de61}</Project>
+      <Name>miRobotEditor.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\miRobotEditor.UI\miRobotEditor.UI.csproj">
+      <Project>{9e0714a3-68fa-4cec-bd9d-f1b3a3532828}</Project>
+      <Name>miRobotEditor.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Styles\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

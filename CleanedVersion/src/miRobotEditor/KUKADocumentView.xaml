@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="miRobotEditor.KUKADocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:miRobotEditor.Core.Converters;assembly=miRobotEditor.Core"
+             xmlns:editorControl="clr-namespace:miRobotEditor.EditorControl;assembly=miRobotEditor.EditorControl"
+             xmlns:controls="clr-namespace:miRobotEditor.UI.Controls;assembly=miRobotEditor.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:VariableToFunctionConverter x:Key="VariableToFunctionConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <ComboBox SelectedItem="{Binding TextBox.SelectedVariable}" ItemsSource="{Binding TextBox.Variables, ConverterParameter=Function, Converter={StaticResource VariableToFunctionConverter}}" DockPanel.Dock="Top" />
+        <Grid DockPanel.Dock="Top">
+            <Grid.InputBindings>
+                <KeyBinding Command="{Binding ToggleGridCommand}" CommandTarget="{Binding Grid}" Key="T"  Modifiers="Control" />
+            </Grid.InputBindings>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <editorControl:Editor Grid.Row="0" DataContext="{Binding Source}"/>
+            <editorControl:Editor Grid.Row="2" DataContext="{Binding Data}"/>
+            <controls:ExtendedGridSplitter x:Name="_grid" Grid.Row="1" DataContext="{Binding Grid}" />
+        </Grid>
+    </DockPanel>
+</UserControl>

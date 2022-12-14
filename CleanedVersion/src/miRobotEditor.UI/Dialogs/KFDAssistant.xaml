@@ -1,0 +1,22 @@
+﻿<Window x:Class="miRobotEditor.UI.Dialogs.KFDAssistant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resources="clr-namespace:miRobotEditor.Resources;assembly=miRobotEditor.Resources"
+        Title="KFDAssistant" Height="300" Width="300">
+    <Grid>
+        <ListView>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static resources:HeaderResource.Name}"/>
+                        <GridViewColumn Header="{x:Static resources:HeaderResource.ShortName}"/>
+                        <GridViewColumn Header="{x:Static resources:HeaderResource.Shortcut}"/>
+                        <GridViewColumn Header="{x:Static resources:HeaderResource.Unit}"/>
+                        <GridViewColumn Header="{x:Static resources:HeaderResource.Enable}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DataGrid/>
+    </Grid>
+</Window>

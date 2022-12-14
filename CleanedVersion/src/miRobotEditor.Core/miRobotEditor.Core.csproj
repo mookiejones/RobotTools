@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F091D261-B189-4CFF-9C98-82878C0F3F76}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>miRobotEditor.Core</RootNamespace>
+    <AssemblyName>miRobotEditor.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\src\bin\Debug\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\..\packages\AvalonEdit.5.0.1-pre\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\..\..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CartesianItems.cs" />
+    <Compile Include="CartesianTypes.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Circle2D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Circle3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Distance3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\EigenSolver.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\ErrorFunction.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\IGeometricElement3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Intersect3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\LeastSquaresFit2D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\LeastSquaresFit3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Line2D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Line3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Matrix.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\MatrixDirection.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\MatrixException.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\MatrixNullReference.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\NRSolver.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Plane3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Point2D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Point3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Project3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\QRDecomposition.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Quaternion.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\RandomNumber.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\RotationMatrix3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Sphere3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\SquareMatrix.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\SVD.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\TransformationMatrix3D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Vector.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Vector2D.cs" />
+    <Compile Include="Classes\AngleConverter\Math Library\Vector3D.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\Axis.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\Joint.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\ModelType.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\OrientationConvention.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\Robot.cs" />
+    <Compile Include="Classes\AngleConverter\Robot\RobotBaseAndToolCalibration.cs" />
+    <Compile Include="Classes\ApplicationInformation.cs" />
+    <Compile Include="Classes\CartesianPosition.cs" />
+    <Compile Include="Classes\FileViewModel.cs" />
+    <Compile Include="Classes\Global.cs" />
+    <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\MenuTemplateSelector.cs" />
+    <Compile Include="Classes\Messaging\ErrorMessage.cs" />
+    <Compile Include="Classes\Messaging\FileMessage.cs" />
+    <Compile Include="Classes\Messaging\Interfaces\IMessage.cs" />
+    <Compile Include="Classes\Messaging\MsgIcon.cs" />
+    <Compile Include="Classes\Messaging\OpenFileMessage.cs" />
+    <Compile Include="Classes\Messaging\OutputWindowMessage.cs" />
+    <Compile Include="Classes\PaneViewModel.cs" />
+    <Compile Include="Classes\RecentFileList.cs" />
+    <Compile Include="Classes\SerializeBase.cs" />
+    <Compile Include="Classes\ToolViewModel.cs" />
+    <Compile Include="Classes\Utilities.cs" />
+    <Compile Include="Classes\Variable.cs" />
+    <Compile Include="CommandMessage.cs" />
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\AbstractMenuCommand.cs" />
+    <Compile Include="Commands\DropFileCommand.cs" />
+    <Compile Include="Commands\IMenuCommand.cs" />
+    <Compile Include="Converters\AngleToolTipConverter.cs" />
+    <Compile Include="Converters\BooleanToTypeModeStringConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ColorToSolidColorBrushConverter.cs" />
+    <Compile Include="Converters\DoubleToStringConverter.cs" />
+    <Compile Include="Converters\DoubleToThicknessConverter.cs" />
+    <Compile Include="Converters\FunctionVisibilityConverter.cs" />
+    <Compile Include="Converters\GetFileIconConverter.cs" />
+    <Compile Include="Converters\GetFileSystemInfosConverter.cs" />
+    <Compile Include="Converters\SolidColorBrushToColorConverter.cs" />
+    <Compile Include="Converters\VariableToFunctionConverter.cs" />
+    <Compile Include="Converters\WidthConverter.cs" />
+    <Compile Include="Enums\CartesianEnum.cs" />
+    <Compile Include="Enums\CartesianType.cs" />
+    <Compile Include="Handlers\MessageAddedHandler.cs" />
+    <Compile Include="Handlers\UpdateRequiredHandler.cs" />
+    <Compile Include="Helpers\WeakAction.cs" />
+    <Compile Include="Helpers\WeakFunc.cs" />
+    <Compile Include="InfoFile.cs" />
+    <Compile Include="Interfaces\AnchorMovementType.cs" />
+    <Compile Include="Interfaces\BlockCommentRegion.cs" />
+    <Compile Include="Interfaces\BookmarkImage.cs" />
+    <Compile Include="Interfaces\DialogWindow.cs" />
+    <Compile Include="Interfaces\IBookmark.cs" />
+    <Compile Include="Interfaces\IBookmarkMargin.cs" />
+    <Compile Include="Interfaces\IconBarManager.cs" />
+    <Compile Include="Interfaces\IExecuteWithObject.cs" />
+    <Compile Include="Interfaces\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="Interfaces\IImage.cs" />
+    <Compile Include="Interfaces\ImageElementGenerator.cs" />
+    <Compile Include="Interfaces\IVariable.cs" />
+    <Compile Include="Interfaces\Location.cs" />
+    <Compile Include="Interfaces\TextChangeEventArgs.cs" />
+    <Compile Include="LayoutInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\Class1.cs" />
+    <Compile Include="SerializeBase.cs" />
+    <Compile Include="ShiftModel.cs" />
+    <Compile Include="Structs\Location.cs" />
+    <Compile Include="Technology.cs" />
+    <Compile Include="ToolTipModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

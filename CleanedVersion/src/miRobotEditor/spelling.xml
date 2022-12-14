@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Unrecognized>
+      <Word>knokker</Word>
+    </Unrecognized>
+    <Recognized>
+      <Word>dat</Word>
+      <Word>cfg</Word>
+      <Word>kfd</Word>
+      <Word>prg</Word>
+      <Word>mod</Word>
+      <Word>src</Word>
+      <Word>ls</Word>
+
+      <Word>Kuka</Word>
+      <Word>Acm_Kuka</Word>
+      <Word>Mit</Word>
+      <Word>Nominals</Word>
+      <Word>Acm</Word>
+      <Word>Bae</Word>
+      <Word>Hmi</Word>
+      <Word>eventdoc</Word>
+    </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate=""></Term>
+    </Deprecated>
+    <Compound>
+      <Term CompoundAlternate=""></Term>
+    </Compound>
+    <DiscreteExceptions>
+      <Term></Term>
+    </DiscreteExceptions>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>resources</Acronym>
+      <Acronym>icons</Acronym>
+
+      <Acronym>xaml</Acronym>
+      <Acronym>mi</Acronym>
+      <Acronym>ID</Acronym>
+      <Acronym>Acm</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>
