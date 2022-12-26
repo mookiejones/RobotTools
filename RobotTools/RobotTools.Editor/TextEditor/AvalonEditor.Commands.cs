@@ -98,7 +98,65 @@ namespace RobotTools.Editor.TextEditor
 
         #endregion CloseAllFoldsCommand
 
-
      
+        #region UndoCommand
+        private RelayCommand _undoCommand;
+        public RelayCommand UndoCommand => _undoCommand ?? (_undoCommand = new RelayCommand(ExecuteUndoCommand, CanExecuteUndoCommand));
+
+        private void ExecuteUndoCommand()
+        {
+            Undo();
+        }
+
+        private bool CanExecuteUndoCommand() => true;
+
+
+        #endregion
+
+        #region RedoCommand
+        private RelayCommand _RedoCommand;
+        public RelayCommand RedoCommand => _RedoCommand ?? (_RedoCommand = new RelayCommand(ExecuteRedoCommand, CanExecuteRedoCommand));
+
+        private void ExecuteRedoCommand()
+        {
+            Redo();
+        }
+
+        private bool CanExecuteRedoCommand()
+        {
+            return true;
+        }
+        #endregion
+
+        #region CutCommand
+        private RelayCommand _CutCommand;
+        public RelayCommand CutCommand => _CutCommand ?? (_CutCommand = new RelayCommand(ExecuteCutCommand, CanExecuteCutCommand));
+
+        private void ExecuteCutCommand() => Cut();
+
+        private bool CanExecuteCutCommand() => true;
+        #endregion
+
+        #region CopyCommand
+        private RelayCommand _CopyCommand;
+        public RelayCommand CopyCommand => _CopyCommand ?? (_CopyCommand = new RelayCommand(ExecuteCopyCommand, CanExecuteCopyCommand));
+
+        private void ExecuteCopyCommand() => Copy();
+
+
+        private bool CanExecuteCopyCommand() => true;
+
+        #endregion
+
+        #region PasteCommand
+        private RelayCommand _PasteCommand;
+        public RelayCommand PasteCommand => _PasteCommand ?? (_PasteCommand = new RelayCommand(ExecutePasteCommand, CanExecutePasteCommand));
+
+        private void ExecutePasteCommand() => Paste();
+
+
+        private bool CanExecutePasteCommand() => true;
+
+        #endregion
     }
 }

@@ -154,6 +154,8 @@
     <Compile Include="ViewModels\Base\ToolViewModel.cs" />
     <Compile Include="ViewModels\FileStatsViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
+    <Compile Include="ViewModels\IEditorDocument.cs" />
+    <Compile Include="ViewModels\MainViewModel.Commands.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />

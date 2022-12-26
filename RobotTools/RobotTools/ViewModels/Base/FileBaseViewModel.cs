@@ -1,5 +1,6 @@
 ﻿using RobotTools.Docking;
 using System.Windows.Input;
+using RobotTools.UI.Editor;
 
 namespace RobotTools.ViewModels.Base
 {
@@ -9,7 +10,7 @@ namespace RobotTools.ViewModels.Base
     /// among viewmodels that represent documents in Edi
     /// (text file edits, Start Page, Prgram Settings).
     /// </summary>
-    internal abstract class FileBaseViewModel : PaneViewModel
+    internal abstract class FileBaseViewModel : PaneViewModel,IEditorDocument
     {
        
         #region properties
@@ -40,5 +41,19 @@ namespace RobotTools.ViewModels.Base
         }
         #endregion
         #endregion properties
+
+        private AvalonEditor _textBox;
+
+        public AvalonEditor TextBox
+        {
+            get => _textBox;
+            set
+            {
+                SetProperty(ref _textBox, value);
+                OnPropertyChanged("Title");
+
+
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace RobotTools.ViewModels
 {
-    class MainViewModel: ObservableValidator
+    partial class MainViewModel: ObservableValidator
     {
 
        public MainViewModel()
@@ -383,5 +383,7 @@ namespace RobotTools.ViewModels
 
             return l[0];
         }
+
+
     }
 }

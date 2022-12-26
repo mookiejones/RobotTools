@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RobotTools"
+                  xmlns:ae="http://icsharpcode.net/sharpdevelop/avalonedit"
                   xmlns:vm="clr-namespace:RobotTools.ViewModels"
                   xmlns:converters="clr-namespace:RobotTools.UI.Editor.Converters;assembly=RobotTools.UI"
                   xmlns:conv="clr-namespace:RobotTools.Converters"
@@ -12,23 +13,48 @@
                   d:DataContext="{d:DesignInstance Type=vm:MainViewModel,IsDesignTimeCreatable=True}"
                   
                   xmlns:view="clr-namespace:RobotTools.Views" xmlns:docking="clr-namespace:RobotTools.Docking"
+                  xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+                  xmlns:classes="clr-namespace:RobotTools.UI.Editor.Options;assembly=RobotTools.UI"
                   Title="MainWindow" Height="450" Width="800">
     <mah:MetroWindow.Resources>
         <converters:ActiveDocumentConverter x:Key="ActiveDocumentConverter"/>
     </mah:MetroWindow.Resources>
+    <mah:MetroWindow.InputBindings>
+        <KeyBinding Gesture="Alt+C" Command="{Binding CloseCommand,Mode=OneWay}"/>
+        <KeyBinding Key="F3" Modifiers="Shift" Command="{Binding SearchCommand,Mode=OneWay}" CommandParameter="something" />
+        <KeyBinding Key="F" Modifiers="Control" Gesture="CTRL+F" Command="{Binding FindCommand,Mode=OneWay}" />
+        <KeyBinding Key="R" Modifiers="Shift+Control" Command="{Binding FindReplaceCommand, Mode=OneWay}" />
+
+    </mah:MetroWindow.InputBindings>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu IsMainMenu="True" >
+            <Menu.Resources>
+                <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}"
+                       BasedOn="{StaticResource {x:Type MenuItem}}">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="10" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Menu.Resources>
             <MenuItem Header="_File">
-                <MenuItem Header="New" Command="{Binding NewCommand}"/>
-                <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
+                <MenuItem Header="_New" Command="{Binding NewCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=File}" />
+                <MenuItem Header="_Open" Command="{Binding OpenCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=FileDocument}"/>
                 <Separator/>
-                <MenuItem Header="Save" Command="{Binding ActiveDocument.SaveCommand}"/>
-                <MenuItem Header="Save As..." Command="{Binding ActiveDocument.SaveAsCommand}"/>
-
+                <MenuItem Header="_Save" Command="{Binding ActiveDocument.SaveCommand}" Icon="{wpf:PackIcon Kind=ContentSave}"/>
+                <MenuItem Header="Save _As" Command="{Binding SaveAsCommand}" Icon="{wpf:PackIcon Kind=ContentSaveAll}"/>
+                <MenuItem Header="Reload" Command="{Binding ReloadCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=Reload}"/>
+                <MenuItem Header="_Import" Command="{Binding ImportCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=Import}"/>
+                <MenuItem Header="_Print" Command="ApplicationCommands.Print" Icon="{wpf:PackIcon Kind=Printer}"/>
+                <MenuItem Header="Print P_review" Command="ApplicationCommands.PrintPreview" Icon="{wpf:PackIcon Kind=PrintPreview}"/>
+                <MenuItem Header="Close" Command="{Binding ActiveDocument.CloseCommand}" Icon="{wpf:PackIcon Kind=Close}"/>
+                <Separator/>
                 <MenuItem ItemsSource="{Binding RecentFiles.MruList.ListOfMRUEntries}" Grid.Row="0" Header="Recent Files"
                           Visibility="{Binding Path=RecentFiles.MruList.ListOfMRUEntries, Mode=OneWay, Converter={conv:ZeroToVisibilityConverter}}">
                     <MenuItem.ItemContainerStyle>
@@ -40,8 +66,91 @@
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Close" Command="{Binding ActiveDocument.CloseCommand}"/>
-
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=ExitRun}"/>
+             
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Undo" Command="{Binding ActiveDocument.TextBox.UndoCommand, Mode=OneWay}" Icon="{wpf:PackIcon Kind=Undo}"/>
+                <MenuItem Header="Redo" Command="{Binding ActiveDocument.TextBox.RedoCommand, Mode=OneWay}" Icon="{wpf:PackIcon Kind=Redo}"/>
+                
+                <Separator />
+                <MenuItem Header="Cut" Command="{Binding ActiveDocument.TextBox.CutCommand, Mode=OneWay}" Icon="{wpf:PackIcon Kind=ContentCut}"/>
+                
+                <MenuItem Header="Copy" Command="{Binding ActiveDocument.TextBox.CopyCommand, Mode=OneWay}" Icon="{wpf:PackIcon Kind=ContentCopy}"/>
+                <MenuItem Header="Paste" Command="{Binding ActiveDocument.TextBox.PasteCommand, Mode=OneWay}" Icon="{wpf:PackIcon Kind=ContentPaste}"/>
+                <MenuItem Header="_Delete" Command="ApplicationCommands.Delete" ToolTip="Deletes the current line."
+                          CommandTarget="{Binding ActiveDocument.TextBox}" />
+                <MenuItem Header="Delete _Line" Command="ae:AvalonEditCommands.DeleteLine"
+                          ToolTip="Deletes the current line." CommandTarget="{Binding ActiveDocument.TextBox}" />
+                <MenuItem Header="Select _All" Command="ApplicationCommands.SelectAll"
+                          ToolTip="Select All of Document." CommandTarget="{Binding ActiveDocument.TextBox}" Icon="{wpf:PackIcon Kind=SelectAll}">
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Comment Selection" CommandTarget="{Binding ActiveDocument.TextBox}" Icon="{wpf:PackIcon Kind=Comment}"/>
+                <Separator />
+                <MenuItem x:Name="Formatting" Header="Formatting">
+                    <MenuItem Header="View Whitespace" IsCheckable="True"
+                              IsChecked="{Binding ShowSpaces, Source={x:Static classes:EditorOptions.Instance}}" />
+                    <MenuItem Header="Wordwrap"
+                              IsChecked="{Binding WrapWords, Source={x:Static classes:EditorOptions.Instance}}" />
+                    <Separator />
+                    <MenuItem Header="Toggle Comment" Command="{Binding ToggleCommentCommand,Mode=OneWay}"/>
+                    <Separator />
+                    <MenuItem Header="Increase Line Indent" Command="{Binding IncreaseLineIndentCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=FormatIndentIncrease}"/>
+                    <MenuItem Header="Decrease Line Indent" Command="{Binding DecreaseLineIndentCommand,Mode=OneWay}" Icon="{wpf:PackIcon Kind=FormatIndentDecrease}"/>
+                    <MenuItem Header="Remove Leading Whitespace"
+                              Command="ae:AvalonEditCommands.RemoveLeadingWhitespace"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Remove Trailing Whitespace"
+                              Command="ae:AvalonEditCommands.RemoveTrailingWhitespace"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="To Uppercase" Command="ae:AvalonEditCommands.ConvertToUppercase"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="To Lowercase" Command="ae:AvalonEditCommands.ConvertToLowercase"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Capitalize" Command="ae:AvalonEditCommands.ConvertToTitleCase"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Invert Case" Command="ae:AvalonEditCommands.InvertCase"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <Separator />
+                    <MenuItem Header="Tabs to Spaces" Command="ae:AvalonEditCommands.ConvertTabsToSpaces"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Spaces to Tabs" Command="ae:AvalonEditCommands.ConvertSpacesToTabs"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Leading tabs to spaces"
+                              Command="ae:AvalonEditCommands.ConvertLeadingTabsToSpaces"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Leading spaces to tabs"
+                              Command="ae:AvalonEditCommands.ConvertLeadingSpacesToTabs"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Indent Selection" Command="ae:AvalonEditCommands.IndentSelection"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Find in Files" Command="{Binding ShowFindReplaceCommand,Mode=OneWay}" />
+                <MenuItem Header="Replace in Files" Command="{Binding ShowFindReplaceCommand,Mode=OneWay}" />
+                <Separator />
+                <MenuItem Header="Find and Replace">
+                    <MenuItem Header="Find" Command="ApplicationCommands.Find"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find Next" Command="ae:SearchCommands.FindNext"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find Previous" Command="ae:SearchCommands.FindPrevious"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Cancel Search" Command="ae:SearchCommands.CloseSearchPanel"
+                              CommandTarget="{Binding ActiveDocument.TextBox}" />
+                    <MenuItem Header="Find and Replace" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Go To..." CommandTarget="{Binding ActiveDocument.TextBox}" />
+                <MenuItem Header="Folding">
+                    <MenuItem Header="_Open All Folds"
+                              Command="{Binding ActiveDocument.TextBox.OpenAllFoldsCommand, Mode=OneWay}" />
+                    <MenuItem Header="_Close All Folds"
+                              Command="{Binding ActiveDocument.TextBox.CloseAllFoldsCommand, Mode=OneWay}" />
+                    <MenuItem Header="Toggle Current Fold" Command="{Binding ActiveDocument.TextBox.ToggleFoldsCommand}" />
+                    <MenuItem Header="Toggle All Folds" Command="{Binding ActiveDocument.TextBox.ToggleAllFoldsCommand}" />
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Tools">
                 <MenuItem Header="RecentFiles" IsChecked="{Binding RecentFiles.IsVisible, Mode=TwoWay}" IsCheckable="True"/>
